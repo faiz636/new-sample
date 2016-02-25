@@ -1,0 +1,43 @@
+{
+  "notification":{
+    "to" : "bk3RNwTe3H0:CI2k_HHwgIpoDKCIZvvDMExUdFQ3P1...",
+    "notification" : {
+      "body" : "great match!",
+      "title" : "Portugal vs. Denmark",
+      "icon" : "myicon"
+    }
+  },
+  "data":{
+    "to" : "bk3RNwTe3H0:CI2k_HHwgIpoDKCIZvvDMExUdFQ3P1...",
+    "data" : {
+      "Nick" : "Mario",
+      "body" : "great match!",
+      "Room" : "PortugalVSDenmark"
+    }
+  },
+  "both": {
+    "to": "APA91bHun4MxP5egoKMwt2KZFBaFUH-1RYqx...",
+    "notification": {
+      "body": "great match!",
+      "title": "Portugal vs. Denmark",
+      "icon": "myicon"
+    },
+    "data": {
+      "Nick": "Mario",
+      "Room": "PortugalVSDenmark"
+    }
+  },
+  "bothWithPriority": {
+    "to": "bk3RNwTe3H0:CI2k_HHwgIpoDKCIZvvDMExUdFQ3P1...",
+    "priority": "normal",
+    "notification": {
+      "body": "This week’s edition is now available.",
+      "title": "NewsMagazine.com",
+      "icon": "new"
+    },
+    "data": {
+      "volume": "3.21.15",
+      "contents": "http://www.news-magazine.com/world-week/21659772"
+    }
+  }
+}
