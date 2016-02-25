@@ -1,0 +1,13 @@
+*/node_modules
+*/.idea
+**/.idea
+
+
+/NewsSample/.gradle
+/NewsSample/local.properties
+/NewsSample/.idea/workspace.xml
+/NewsSample/.idea/libraries
+/NewsSample/.DS_Store
+/NewsSample/build
+/NewsSample/captures
+/NewsSample/app/app.iml
