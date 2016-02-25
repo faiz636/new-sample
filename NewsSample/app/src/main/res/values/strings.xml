@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">News Sample</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="gcm_send_message">Token retrieved and sent to server! You can now use gcmsender to
+        send downstream messages to this app.</string>
+    <string name="registering_message">Generating InstanceID token…</string>
+    <string name="token_error_message">An error occurred while either fetching the InstanceID token,
+        sending the fetched token to the server or subscribing to the PubSub topic. Please try
+        running the sample again.</string>
+
+    <string name="serveraddress">10.0.2.2:8888/</string>
+    <string name="registerGCMKey">test</string>
+    
+    <string name="userid">userid</string>
+    <string name="registration_key">registration_id</string>
+    <string name="deviceid">deviceid</string>
+
+</resources>
