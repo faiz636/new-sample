@@ -1,4 +1,4 @@
-package com.rubbersoft.android.newssample.adapters;
+package com.rubbersoft.android.newssample.ui.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import com.rubbersoft.android.newssample.R;
 import com.rubbersoft.android.newssample.model.BaseModel;
 import com.rubbersoft.android.newssample.model.NewsModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +20,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private final List<BaseModel> mDataset;
 
+    public MyAdapter(){
+        mDataset = new ArrayList<>();
+    }
     // Provide a suitable constructor (depends on the kind of dataset)
     public MyAdapter(List<BaseModel> myDataset) {
         mDataset = myDataset;
@@ -73,6 +77,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return mDataset.size();
+    }
+
+    public void addItem(BaseModel obj){
+        mDataset.add(obj);
+        notifyItemInserted(mDataset.size()-1);
     }
 
     // Provide a reference to the views for each data item

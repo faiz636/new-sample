@@ -36,10 +36,8 @@ public class HttpRequest {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put(context.getString(R.string.userid), userid);
-            jsonObject.put(context.getString(R.string.registerGCMKey), key);
-            if (deviceid > -1) {
-                jsonObject.put(context.getString(R.string.deviceid), deviceid);
-            }
+            jsonObject.put(context.getString(R.string.registration_key), key);
+            jsonObject.put(context.getString(R.string.deviceid), deviceid);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -51,7 +49,7 @@ public class HttpRequest {
             public void onResponse(JSONObject jsonObject) {
                 Log.i("response", "url-->" + url + "--value-->" + jsonObject.toString());
                 try {
-                    int status = (int) jsonObject.getInt("status");
+                    int status = (int) jsonObject.getInt("code");
                     if (status == 200) {
                         int deviceid = jsonObject.getInt(context.getString(R.string.deviceid));
                         serviceListener.success(deviceid);

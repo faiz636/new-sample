@@ -8,6 +8,6 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main2"
-    tools:context="com.rubbersoft.android.newssample.activities.Main2Activity">
+    tools:context="com.rubbersoft.android.newssample.ui.activities.Main2Activity">
 
 </RelativeLayout>

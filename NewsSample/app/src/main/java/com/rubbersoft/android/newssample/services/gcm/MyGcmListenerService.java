@@ -12,7 +12,7 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GcmListenerService;
 import com.rubbersoft.android.newssample.R;
-import com.rubbersoft.android.newssample.activities.MainActivity;
+import com.rubbersoft.android.newssample.ui.activities.MainActivity;
 
 /**
  * Created by Faiz on 20/02/2016.

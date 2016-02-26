@@ -82,10 +82,11 @@ public class RegistrationIntentService extends IntentService {
         Log.i(TAG, "sending token");
         int deviceId = sharedPreferences.getInt(QuickstartPreferences.DEVICE_ID,-1);
         String userId = sharedPreferences.getString(QuickstartPreferences.USER_ID, "Testing Android");
+        Log.i(TAG, "token sent with id:" + deviceId);
         HttpRequest.register(deviceId, userId, token, new ServiceListener<Integer>() {
             @Override
             public void success(Integer obj) {
-                Log.i(TAG, "token sent with id:" + obj);
+                Log.i(TAG,"token registered with id:" + obj);
                 if (obj>0){
                     sharedPreferences.edit().putInt(QuickstartPreferences.DEVICE_ID,obj).apply();
                 }
