@@ -35,20 +35,19 @@ app.all('/test', function (req, res) {
     console.log(req.headers);
     console.log(req.body);
 
+    response.test = "good testing";
     res.json(response);
 });
 
 app.route('/register')
     .post(function (req, res) {
         var body = req.body;
-        if (body.userid == null || body.registration_id == null) {
+        if (body.userid == null || body.registration_id == null || body.userid == null) {
             res.json({"code": 400, "status": "incomplete data"});
+            console.log("incomplete request: ");
+            console.log(body);
+            return
         }
-        /*
-         else {
-         res.json({"code": 200, "status": "request complete"});
-         }
-         */
 
         pool.getConnection(function (err, connection) {
             if (err) {
@@ -63,13 +62,14 @@ app.route('/register')
 
             console.log('connected as id ' + connection.threadId);
             var query;
-            if (body.deviceid != null) {
+            if (body.deviceid > 0) {
                 query = 'UPDATE `api_key` SET ' +
                     '`registration_id` = ' +
                     '"' + body.registration_id + '"' +
                     'WHERE ' +
                     '`deviceid` = ' +
                     body.deviceid;
+                console.log("record updating for id "+body.deviceid);
             } else {
                 query = 'INSERT INTO `api_key`' +
                     '(`userid`,`registration_id`)' +
@@ -77,6 +77,7 @@ app.route('/register')
                     '"' + body.userid + '",' +
                     '"' + body.registration_id + '"' +
                     ')';
+                console.log("new record");
             }
             connection.query(query, function (err, result) {
                 connection.release();
@@ -86,6 +87,7 @@ app.route('/register')
                     obj.status = "device key updated";
                     //console.log(result);
                     res.json(obj);
+                    console.log("operation complete");
                 }
             });
 
@@ -97,6 +99,6 @@ app.route('/register')
 
     });
 
-app.listen(3000, function () {
+app.listen(8888, function () {
     console.log('Example app listening on port 3000!');
 });
