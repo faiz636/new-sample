@@ -29,6 +29,7 @@ public class MyGcmListenerService extends GcmListenerService {
      *             For Set of keys use data.keySet().
      */
     // [START receive_message]
+    int i =0;
     @Override
     public void onMessageReceived(String from, Bundle data) {
         Bundle notification = data.getBundle("notification");
@@ -72,9 +73,9 @@ public class MyGcmListenerService extends GcmListenerService {
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_stat_ic_notification)
+                .setSmallIcon(R.drawable.myicon)
                 .setContentTitle("GCM Message")
-                .setContentText(message)
+                .setContentText(message+" "+ i)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
@@ -82,6 +83,6 @@ public class MyGcmListenerService extends GcmListenerService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+        notificationManager.notify(i++%10 /* ID of notification */, notificationBuilder.build());
     }
 }

@@ -9,7 +9,7 @@
         sending the fetched token to the server or subscribing to the PubSub topic. Please try
         running the sample again.</string>
 
-    <string name="serveraddress">http://10.0.3.2:8888/</string>
+    <string name="serveraddress">http://192.168.1.104:8888/</string>
     <string name="registerGCMKey">register</string>
     
     <string name="userid">userid</string>
