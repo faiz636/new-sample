@@ -55,7 +55,7 @@ router//.route('/')
                 connection.release();
                 if (!err) {
                     obj = {"code": 200};
-                    obj.deviceid = result.insertId;
+                    obj.newsid = result.insertId;
                     obj.status = "news added";
                     //console.log(result);
                     res.json(obj);
@@ -88,7 +88,7 @@ router//.route('/')
                 console.log(err);
                 return;
             }
-            var query = "SELECT * FROM `news`";
+            var query = "SELECT * FROM `news` ORDER BY `newsid` DESC LIMIT 10";
             connection.query(query, function (err, result) {
                 console.log("database response");
                 //console.log(result);
@@ -114,7 +114,7 @@ router//.route('/')
             });
         });
     })
-    .get("/:id/*", function (req, res) {
+    .get("/:id", function (req, res) {
         console.log("\nnews get request: " + i++ + " with id " + req.params.id);
         console.log(req.params);
         //console.log(req);
