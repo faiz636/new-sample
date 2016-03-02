@@ -12,10 +12,6 @@ import com.android.volley.toolbox.Volley;
 import com.rubbersoft.android.newssample.NewsApplication;
 
 
-/**
- * Created by zeeshan on 4/28/2015.
- */
-
 // Implementation References:
 // https://developer.android.com/training/volley/requestqueue.html
 // http://arnab.ch/blog/2013/08/asynchronous-http-requests-in-android-using-volley/

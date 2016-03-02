@@ -15,11 +15,15 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.rubbersoft.android.newssample.services.QuickstartPreferences;
 import com.rubbersoft.android.newssample.services.gcm.RegistrationIntentService;
+import com.rubbersoft.android.newssample.services.listeners.ServiceError;
+import com.rubbersoft.android.newssample.services.listeners.ServiceListener;
+import com.rubbersoft.android.newssample.services.volley.HttpRequest;
 import com.rubbersoft.android.newssample.ui.adapters.MyAdapter;
 import com.rubbersoft.android.newssample.R;
 import com.rubbersoft.android.newssample.model.BaseModel;
@@ -50,6 +54,18 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, RegistrationIntentService.class);
             startService(intent);
         }
+        ServiceListener serviceListener = new ServiceListener<NewsModel>() {
+            @Override
+            public void success(NewsModel obj) {
+                Toast.makeText(MainActivity.this,"response",Toast.LENGTH_SHORT);
+            }
+
+            @Override
+            public void error(ServiceError serviceError) {
+
+            }
+        };
+        HttpRequest.getNews(16,serviceListener);
     }
 
     @Override

@@ -11,7 +11,8 @@
 
     <string name="serveraddress">http://192.168.1.104:8888/</string>
     <string name="registerGCMKey">register</string>
-    
+    <string name="server_news">news</string>
+
     <string name="userid">userid</string>
     <string name="registration_key">registration_id</string>
     <string name="deviceid">deviceid</string>

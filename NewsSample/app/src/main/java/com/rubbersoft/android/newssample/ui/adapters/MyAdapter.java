@@ -18,13 +18,13 @@ import java.util.List;
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-    private final List<BaseModel> mDataset;
+    private final List<NewsModel> mDataset;
 
     public MyAdapter(){
         mDataset = new ArrayList<>();
     }
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(List<BaseModel> myDataset) {
+    public MyAdapter(List<NewsModel> myDataset) {
         mDataset = myDataset;
     }
 
@@ -53,24 +53,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        BaseModel baseModel = getItem(position);
-        switch (baseModel.getType()) {
-            case BaseModel.Type.TYPE1:
-            case BaseModel.Type.TYPE2:
-                NewsModel newsModel = (NewsModel) baseModel.getNewsModel();
-                holder.mTitle.setText(newsModel.getTitle());
-                break;
-        }
+        NewsModel newsModel = getItem(position);
+        holder.mTitle.setText(newsModel.getTitle()+newsModel.getId());
 
     }
 
-    private BaseModel getItem(int position){
+    private NewsModel getItem(int position){
         return mDataset.get(position);
     }
 
     @Override
     public int getItemViewType(int position) {
-        return getItem(position).getType();
+        return position%5==0?0:1;
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -79,9 +73,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return mDataset.size();
     }
 
-    public void addItem(BaseModel obj){
+    public void addItem(NewsModel obj){
         mDataset.add(obj);
         notifyItemInserted(mDataset.size()-1);
+    }
+
+    public void addAll(List<NewsModel>  list){
+        for (NewsModel newsModel:list) {
+            mDataset.add(newsModel);
+        }
     }
 
     // Provide a reference to the views for each data item

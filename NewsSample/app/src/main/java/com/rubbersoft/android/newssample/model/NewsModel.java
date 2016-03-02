@@ -5,9 +5,12 @@ package com.rubbersoft.android.newssample.model;
  */
 public class NewsModel {
     private String title;
-    private String desc;
+    private String l_desc;
+    private String s_desc;
     private String imgUrl;
-    private String time;
+    private String timestamp;
+    private String author;
+    private int id;
     private Category category;
 
     public NewsModel() {
@@ -15,9 +18,9 @@ public class NewsModel {
 
     public NewsModel(String title, String desc, String imgUrl, String time, Category category) {
         this.title = title;
-        this.desc = desc;
+        this.s_desc = desc;
         this.imgUrl = imgUrl;
-        this.time = time;
+        this.timestamp = time;
         this.category = category;
     }
 
@@ -29,12 +32,12 @@ public class NewsModel {
         this.title = title;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getS_desc() {
+        return s_desc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setS_desc(String s_desc) {
+        this.s_desc = s_desc;
     }
 
     public String getImgUrl() {
@@ -45,12 +48,12 @@ public class NewsModel {
         this.imgUrl = imgUrl;
     }
 
-    public String getTime() {
-        return time;
+    public String getTimestamp() {
+        return timestamp;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
     public Category getCategory() {
@@ -61,4 +64,27 @@ public class NewsModel {
         this.category = category;
     }
 
+    public String getL_desc() {
+        return l_desc;
+    }
+
+    public void setL_desc(String l_desc) {
+        this.l_desc = l_desc;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
