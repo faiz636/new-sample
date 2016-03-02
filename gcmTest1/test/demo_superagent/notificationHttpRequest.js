@@ -6,7 +6,7 @@ var address;
 address = 'https://gcm-http.googleapis.com/gcm/send';
 //address = 'localhost:4000/test';
 var i = 0;
-for (i = 0; i < 50; i++) {
+for (i = 0; i < 5; i++) {
     superagent
     //.get('localhost:4000/test')
         .post(address)
@@ -26,7 +26,7 @@ for (i = 0; i < 50; i++) {
                 ],
 */
                 "notification": {
-                    "body": "testing is good",
+                    "body": "making good",
                     "title": "good test title" + (100 + i),
                     "icon": "myicon"
                 }
