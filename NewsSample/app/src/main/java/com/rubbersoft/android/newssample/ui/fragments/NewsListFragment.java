@@ -1,6 +1,7 @@
 package com.rubbersoft.android.newssample.ui.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.rubbersoft.android.newssample.R;
-import com.rubbersoft.android.newssample.model.BaseModel;
 import com.rubbersoft.android.newssample.model.NewsModel;
 import com.rubbersoft.android.newssample.services.listeners.ServiceError;
 import com.rubbersoft.android.newssample.services.listeners.ServiceListener;
@@ -20,7 +20,6 @@ import com.rubbersoft.android.newssample.ui.activities.MainActivity;
 import com.rubbersoft.android.newssample.ui.adapters.MyAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +30,7 @@ public class NewsListFragment extends Fragment {
     RecyclerView mRecyclerView;
     private LinearLayoutManager mLayoutManager;
     private MyAdapter mAdapter;
+    private MainActivity mainActivity;
 
     public NewsListFragment() {
         // Required empty public constructor
@@ -43,7 +43,7 @@ public class NewsListFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
 
-        mRecyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new MyAdapter();
@@ -52,8 +52,8 @@ public class NewsListFragment extends Fragment {
             @Override
             public void success(ArrayList<NewsModel> obj) {
                 Toast.makeText(getContext(), "response", Toast.LENGTH_SHORT);
-                if (obj!= null)
-                mAdapter.addAll(obj);
+                if (obj != null)
+                    mAdapter.addAll(obj);
             }
 
             @Override
@@ -63,11 +63,31 @@ public class NewsListFragment extends Fragment {
         };
         HttpRequest.getNews(serviceListener2);
 //        createDataset();
+
+        mAdapter.setOnItemClickListener(new MyAdapter.OnClickListener() {
+            @Override
+            public void onClick(NewsModel newsModel) {
+                mainActivity.showDetailFragment(newsModel);
+            }
+        });
+
         return rootView;
-        
+
     }
 
-    private void createDataset(){
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mainActivity = (MainActivity) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mainActivity = null;
+    }
+
+    private void createDataset() {
 /*
         mAdapter.addItem(new BaseModel(BaseModel.Type.TYPE1,new NewsModel("World powers 'agree Syria ceasfire'",null,null,null,null)));
         mAdapter.addItem(new BaseModel(BaseModel.Type.TYPE2,new NewsModel("Japanese shares plunge over glocal woes",null,null,null,null)));
@@ -84,6 +104,7 @@ public class NewsListFragment extends Fragment {
 */
     }
 
-
-
+    public static interface FragmentInteractionListener{
+        public void showDetailFragment(NewsModel newsModel);
+    }
 }

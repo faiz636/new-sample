@@ -141,8 +141,8 @@ public class HttpRequest {
             public void onResponse(JSONObject jsonObject) {
                 Log.i("response", "url-->" + url + "--value-->" + jsonObject.toString());
                 try {
-                    String status = jsonObject.getString("status");
-                    if (!status.equals("code")){
+                    String status = jsonObject.getString("code");
+                    if (!status.equals("200")){
                         Toast.makeText(context,"bad response",Toast.LENGTH_SHORT).show();
                         serviceListener.success(null);
                         return;

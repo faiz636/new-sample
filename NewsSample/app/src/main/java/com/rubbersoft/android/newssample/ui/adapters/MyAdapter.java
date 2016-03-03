@@ -19,6 +19,7 @@ import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private final List<NewsModel> mDataset;
+    private OnClickListener onItemClickListener;
 
     public MyAdapter(){
         mDataset = new ArrayList<>();
@@ -53,8 +54,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        NewsModel newsModel = getItem(position);
+        final NewsModel newsModel = getItem(position);
         holder.mTitle.setText(newsModel.getTitle()+newsModel.getId());
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onClick(newsModel);
+            }
+        });
 
     }
 
@@ -90,10 +97,27 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView mTitle;
+        public View view;
 
         public ViewHolder(View v) {
             super(v);
+            view = v;
             mTitle = (TextView) v.findViewById(R.id.title);
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
     }
+
+    public void setOnItemClickListener(OnClickListener onItemClickListener){
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public static interface OnClickListener{
+        public void onClick(NewsModel newsModel);
+    }
+
 }

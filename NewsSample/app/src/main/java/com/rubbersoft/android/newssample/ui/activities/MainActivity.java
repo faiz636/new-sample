@@ -28,12 +28,13 @@ import com.rubbersoft.android.newssample.ui.adapters.MyAdapter;
 import com.rubbersoft.android.newssample.R;
 import com.rubbersoft.android.newssample.model.BaseModel;
 import com.rubbersoft.android.newssample.model.NewsModel;
+import com.rubbersoft.android.newssample.ui.fragments.NewsDetailFragment;
 import com.rubbersoft.android.newssample.ui.fragments.NewsListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NewsListFragment.FragmentInteractionListener{
 
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static final String TAG = "MainActivity";
@@ -121,4 +122,15 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public void showDetailFragment(NewsModel newsModel) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(NewsDetailFragment.DATA,newsModel);
+        NewsDetailFragment newsDetailFragment = new NewsDetailFragment();
+        newsDetailFragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container,newsDetailFragment)
+                .addToBackStack(null)
+                .commit();
+    }
 }
